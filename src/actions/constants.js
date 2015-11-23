@@ -1,3 +1,3 @@
-import keymirror from 'keymirror'
-
 export const STORE_CHANGE_EVENT = 'STORE_CHANGE_EVENT'
+
+export const ADD_ARTICLE = 'ADD_ARTICLE'
