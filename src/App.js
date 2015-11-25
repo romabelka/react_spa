@@ -15,16 +15,11 @@ class App extends Component {
         articles.removeChangeListener(::this.articlesChange)
     }
     render() {
-        const {articles} = this.state
-        const items = articles.map((article, index) => <li key={index}>{article.title}</li>)
         return (
-            <div>
-                <h1>All articles</h1>
-                <ul>
-                    {items}
-                </ul>
-                <a href="#" onClick = {::this.addArticle}>Add article</a>
-            </div>
+            <section>
+                <h1>News App</h1>
+                {this.props.children}
+            </section>
         )
     }
 
