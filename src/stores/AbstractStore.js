@@ -26,6 +26,11 @@ class AbstractStore extends EventEmitter {
     add(item) {
         this.__items.push(item)
     }
+
+    getStore(store) {
+        return stores[store]
+    }
 }
 
 export default AbstractStore
+var stores = require('./index')

@@ -1,4 +1,8 @@
 import AbstractStore from './AbstractStore'
 import ArticleStore from './Article'
+import CommentStore from './Comments'
 
-export const articles = new ArticleStore
+const articles = new ArticleStore
+const comment = new CommentStore
+
+export {articles, comment}
