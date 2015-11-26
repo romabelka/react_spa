@@ -1,5 +1,5 @@
 import Dispatcher from '../dispatcher'
-import Action from './Action'
+import {Action} from './Action'
 import {ADD_ARTICLE} from './constants'
 
 
