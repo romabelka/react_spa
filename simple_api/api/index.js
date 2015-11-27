@@ -1,36 +1,36 @@
 var router = require('express').Router();
 var mocks = require('./mock');
 
-router.get('/question', function (req, res, next) {
-    res.json(withComments(mocks.questions))
+router.get('/article', function (req, res, next) {
+    res.json(withComments(mocks.articles))
 });
 
-router.get('/question/:id', function (req, res, next) {
-    var question = withComments(mocks.questions).filter(function (question) {
-        return question.id == req.params.id
+router.get('/article/:id', function (req, res, next) {
+    var article = withComments(mocks.articles).filter(function (article) {
+        return article.id == req.params.id
     })[0];
-    if (question) return res.json(question);
+    if (article) return res.json(article);
 
     res.status(404).json({error: "not found"});
 });
 
-router.post('/question', function (req, res, next) {
+router.post('/article', function (req, res, next) {
     var body = req.body;
-    var question = {
+    var article = {
         text: body.text,
-        id: mocks.questions.length + 1,
+        id: mocks.articles.length + 1,
         user: body.user,
         timeStamp: new Date()
     };
-    mocks.questions.push(question);
-    res.json(question)
+    mocks.articles.push(article);
+    res.json(article)
 });
 
 router.get('/comment', function (req, res, next) {
-    var qid = req.query.question;
-    var comments = mocks.comments.filter(function (comment) {
-        return comment.qid == qid
-    });
+    var aid = req.query.article;
+    var comments = aid ? mocks.comments.filter(function (comment) {
+        return comment.aid == aid
+    }) : mocks.comments;
     res.json(comments)
 });
 
@@ -40,7 +40,7 @@ router.post('/comment', function (req, res, next) {
         text : req.body.text,
         timeStamp: new Date(),
         user: req.body.user,
-        qid : req.body.qid
+        aid : req.body.aid
     };
     mocks.comments.push(comment);
     res.json(comment)
@@ -48,10 +48,10 @@ router.post('/comment', function (req, res, next) {
 
 module.exports = router;
 
-function withComments(questions) {
-    return questions.map(function (q) {
+function withComments(articles) {
+    return articles.map(function (q) {
         q.cids = mocks.comments.filter(function (comment) {
-            return comment.qid == q.id
+            return comment.aid == q.id
         }).map(function (comment) {
             return comment.id
         });

@@ -1,4 +1,4 @@
-var questions = [
+var articles = [
     {
         id: 1,
         text: 'lorem ipsum',
@@ -18,24 +18,24 @@ var comments = [
         text: 'first comment',
         timeStamp: new Date(),
         user: 'some user',
-        qid: 1
+        aid: 1
     },
     {
         id: 2,
         text: 'first comment',
         timeStamp: new Date(),
         user: 'some other user',
-        qid: 1
+        aid: 1
     },
     {
         id: 3,
         text: 'first comment',
         timeStamp: new Date(),
-        qid: 1
+        aid: 1
     }
 ];
 
 module.exports = {
     comments: comments,
-    questions: questions
+    articles: articles
 };
