@@ -3,6 +3,6 @@ import ArticleStore from './Article'
 import CommentStore from './Comments'
 
 const articles = new ArticleStore
-const comment = new CommentStore
+const comments = new CommentStore
 
-export {articles, comment}
+export {articles, comments}

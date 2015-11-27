@@ -4,6 +4,8 @@ import {EventEmitter} from 'events'
 class AbstractStore extends EventEmitter {
     constructor() {
         super()
+        this.loading = false
+        this.loaded = false
         this.__items = []
     }
 

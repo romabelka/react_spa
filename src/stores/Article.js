@@ -1,6 +1,12 @@
 import AbstractStore from './AbstractStore'
 import Dispatcher from '../dispatcher'
-import {ADD_ARTICLE} from '../actions/constants'
+import {loadArticles} from '../actions/articles'
+import {
+    ADD_ARTICLE,
+    LOAD_ARTICLE_START,
+    LOAD_ARTICLE_FAIL,
+    LOAD_ARTICLE_SUCCESS
+} from '../actions/constants'
 
 class ArticleStore extends AbstractStore {
     constructor() {
@@ -11,8 +17,27 @@ class ArticleStore extends AbstractStore {
                     this.add(action.data)
                     this.emitChange()
                     break
+                case LOAD_ARTICLE_START:
+                    this.loading = true
+                    this.loaded = false
+                    break;
+                case LOAD_ARTICLE_SUCCESS:
+                    this.addArticles(action.data.response)
+                    this.loading = false
+                    this.loaded = true
+                    this.emitChange()
+                    break
             }
         })
+    }
+
+    getOrLoadAll() {
+        if (!this.loaded && !this.loading) loadArticles()
+        return this.getAll()
+    }
+
+    addArticles(articles) {
+        articles.forEach((article) => this.add(article))
     }
 }
 

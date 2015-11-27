@@ -7,12 +7,13 @@ export class Action {
     }
 }
 
-export const loadAC = (type, retrievePropmise) => {
+export const asyncAC = (type, promise) => {
     return () => {
-        Dispatcher.dispatch(new Action(type + '_LOADING_START'))
+        Dispatcher.dispatch(new Action(type + '_START'))
 
-        retrievePropmise
-            .then((response) => Dispatcher.dispatch(new Action(type + '_LOADING_SUCCESS', {response})))
-            .catch((error) => Dispatcher.dispatch(new Action(type + '_LOADING_FAIL', {error})))
+        promise.then(
+            (response) => Dispatcher.dispatch(new Action(type + '_SUCCESS', {response})),
+            (error) => Dispatcher.dispatch(new Action(type + '_FAIL', {error}))
+        )
     }
 }
