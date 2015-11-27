@@ -1,14 +1,24 @@
 var articles = [
     {
         id: 1,
+        title: 'Some interesting title',
         text: 'lorem ipsum',
         timeStamp: new Date(),
-        user: 'some user'
+        user: 'roma'
     },
     {
         id: 2,
-        text: 'no answers',
-        timeStamp: new Date()
+        title: 'Wrong title',
+        text: 'no-one cares wat\'s written here',
+        timeStamp: new Date(),
+        user: 'roma'
+    },
+    {
+        id: 3,
+        title: 'Hello aliens!',
+        text: 'Truth is out there',
+        timeStamp: new Date(),
+        user: 'vasya'
     }
 ];
 
@@ -17,21 +27,22 @@ var comments = [
         id: 1,
         text: 'first comment',
         timeStamp: new Date(),
-        user: 'some user',
-        aid: 1
+        user: 'oleg',
+        aid: 2
     },
     {
         id: 2,
         text: 'first comment',
         timeStamp: new Date(),
-        user: 'some other user',
+        user: 'roma',
         aid: 1
     },
     {
         id: 3,
         text: 'first comment',
         timeStamp: new Date(),
-        aid: 1
+        aid: 1,
+        user: 'roma'
     }
 ];
 

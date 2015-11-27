@@ -2,7 +2,11 @@ var router = require('express').Router();
 var mocks = require('./mock');
 
 router.get('/article', function (req, res, next) {
-    res.json(withComments(mocks.articles))
+    var articles = withComments(mocks.articles),
+        limit = Number(req.query.limit) || articles.length,
+        offset = Number(req.query.offset) || 0;
+
+    res.json(articles.slice(offset, limit + offset))
 });
 
 router.get('/article/:id', function (req, res, next) {
@@ -31,7 +35,10 @@ router.get('/comment', function (req, res, next) {
     var comments = aid ? mocks.comments.filter(function (comment) {
         return comment.aid == aid
     }) : mocks.comments;
-    res.json(comments)
+
+    var limit = Number(req.query.limit) || articles.length,
+        offset = Number(req.query.offset) || 0;
+    res.json(comments.slice(offset, limit + offset))
 });
 
 router.post('/comment', function (req, res, next) {
